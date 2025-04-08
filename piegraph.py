@@ -17,8 +17,8 @@ def get_unique_words(text):
     return word_counts
 
 # File paths
-file1_path = 'corpora/formattedWork/lovecraftSentences.txt'
-file2_path = 'corpora/formattedWork/poeSentences.txt'
+file1_path = 'corpora/lovecraftSentences.txt'
+file2_path = 'corpora/poeSentences.txt'
 
 # Read texts
 text1 = read_text(file1_path)

@@ -11,8 +11,8 @@ def read_text(file_path):
     return words
 
 # Load both texts
-file1_words = read_text("corpora/formattedWork/lovecraftSentences.txt")  # First text
-file2_words = read_text("corpora/formattedWork/poeSentences.txt")  # Second text
+file1_words = read_text("corpora/lovecraftSentences.txt")  # First text
+file2_words = read_text("corpora/poeSentences.txt")  # Second text
 
 # Count word frequency
 file1_freq = collections.Counter(file1_words)
