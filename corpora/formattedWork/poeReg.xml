@@ -1,4 +1,5 @@
-﻿<xml>
+﻿<?xml-stylesheet type="text/xsl" href="filtered/getQuotes.xsl"?>
+<xml>
     <work>
         <meta>
             <title>The Works of Edgar Allan Poe </title>
