@@ -14,7 +14,7 @@ def wordCollector(words, unit):
     unitList = []
     synsetCounts = []
     for token in words:
-        if token.pos_ == "ADJ" and len(wn.synsets(token.lemma_)) >= 25:
+        if token.pos_ == "ADJ" and len(wn.synsets(token.lemma_)) >= 15:
             synsets = len(wn.synsets(token.lemma_))
             wordList.append(token.lemma_)
             nodeAtts.append(token.pos_)
