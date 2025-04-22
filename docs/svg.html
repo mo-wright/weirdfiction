@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="images/brain.png">
+    <title>Weird Fiction</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+  <title>Adjective Bubble Comparison</title>
+
+<body>
+
+ <header id="top">
+        <div class="header-text">
+            <h1>Weird Fiction</h1>
+            <p>Welcome! </p>
+            <p> The website is currently under construction.</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul class="htop">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="words.html">Text Analysis</a></li>
+            <li><a href="svg.html">Word Comparison</a></li>
+            <li><a href="another.html">Another</a></li>
+        </ul>
+    </nav>
+
+ <p style="text-align: center;">More info about the SVG content. Used the adjFILTERED.tsv</p>
+
+  <button id="toggleBtn">Show Shared Words Only</button>
+  <svg id="bubbleChart"></svg>
+
+
+<script>
+  const lovecraftData = [
+      { word: "wild", synset: 17 },
+      { word: "deep", synset: 21 },
+      { word: "dark", synset: 16 },
+      { word: "low", synset: 16 },
+      { word: "good", synset: 27 },
+      { word: "open", synset: 36 },
+      { word: "blue", synset: 16 },
+      { word: "big", synset: 17 },
+      { word: "soft", synset: 20 },
+      { word: "bad", synset: 17 },
+      { word: "last", synset: 21 },
+      { word: "dead", synset: 21 },
+      { word: "black", synset: 22 },
+      { word: "white", synset: 25 },
+      { word: "hot", synset: 21 },
+      { word: "fit", synset: 16 },
+      { word: "cold", synset: 16 },
+      { word: "right", synset: 36 },
+      { word: "short", synset: 23 },
+      { word: "heavy", synset: 30 },
+      { word: "well", synset: 22 },
+      { word: "good", synset: 27 },
+      { word: "high", synset: 18 },
+      { word: "dry", synset: 19 },
+      { word: "live", synset: 19 },
+      { word: "solid", synset: 18 },
+      { word: "clear", synset: 45 },
+      { word: "close", synset: 37 },
+      { word: "second", synset: 15 },
+      { word: "present", synset: 18 },
+      { word: "heavy", synset: 30 },
+      { word: "advanced", synset: 20 },
+      { word: "back", synset: 28 },
+      { word: "true", synset: 15 },
+      { word: "dull", synset: 19 },
+      { word: "sharp", synset: 15 },
+      { word: "standing", synset: 21 },
+      { word: "last", synset: 21 },
+      { word: "foul", synset: 16 },
+      { word: "regular", synset: 17 },
+      { word: "closing", synset: 23 },
+      { word: "darker", synset: 45 },
+      { word: "wild", synset: 17 },
+      { word: "light", synset: 47 },
+      { word: "short", synset: 23 },
+      { word: "rough", synset: 18 },
+      { word: "first", synset: 16 },
+      { word: "loose", synset: 18 },
+      { word: "separate", synset: 19 },
+      { word: "upset", synset: 17 },
+      { word: "closed", synset: 26 },
+      { word: "gray", synset: 15 },
+      { word: "dull", synset: 19 },
+      { word: "blue", synset: 16 },
+      { word: "flat", synset: 24 },
+      { word: "fair", synset: 17 },
+      { word: "frozen", synset: 17 },
+      { word: "top", synset: 22 },
+      { word: "hard", synset: 22 },
+      { word: "soft", synset: 20 },
+      { word: "left", synset: 24 },
+      { word: "right", synset: 36 },
+      { word: "sound", synset: 24 },
+      { word: "free", synset: 22 },
+      { word: "crossing", synset: 15 },
+
+
+  ];
+
+  const poeData = [
+    { word: "dark", synset: 16 },
+    { word: "open", synset: 36 },
+    { word: "well", synset: 22 },
+    { word: "true", synset: 15 },
+    { word: "good", synset: 27 },
+    { word: "high", synset: 18 },
+    { word: "last", synset: 21 },
+    { word: "close", synset: 37 },
+    { word: "clear", synset: 45 },
+    { word: "true", synset: 15 },
+  ];
+
+
+    const sharedWords = Array.from(new Set(lovecraftData.map(d => d.word)))
+      .filter(word => poeData.some(p => p.word === word));
+
+    const svg = document.getElementById("bubbleChart");
+    const toggleBtn = document.getElementById("toggleBtn");
+    let showSharedOnly = false;
+
+    toggleBtn.addEventListener("click", () => {
+      showSharedOnly = !showSharedOnly;
+      toggleBtn.textContent = showSharedOnly ? "Show All Words" : "Show Shared Words Only";
+      renderBubbles(lovecraftData, poeData);
+    });
+
+    function renderBubbles(lovecraft, poe) {
+  svg.innerHTML = "";
+
+  let maxWidth = 0;
+  let maxHeight = 0;
+
+    function draw(data, offsetX, color1, color2) {
+    data.forEach((item, i) => {
+      const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      group.setAttribute("class", "bubble");
+      const radius = item.synset;
+      const col = i % 4;
+      const row = Math.floor(i / 4);
+      const x = offsetX + col * 150;
+      const y = 100 + row * 130;
+
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", x);
+      circle.setAttribute("cy", y);
+      circle.setAttribute("r", radius);
+      circle.setAttribute("fill", color1);
+      circle.setAttribute("stroke", color2);
+      circle.setAttribute("stroke-width", "2");
+
+     const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.setAttribute("x", x);
+      text.setAttribute("y", y + 4);
+      text.setAttribute("text-anchor", "middle");
+      text.textContent = item.word;
+
+      group.appendChild(circle);
+      group.appendChild(text);
+      svg.appendChild(group);
+
+           maxWidth = Math.max(maxWidth, x + radius * 2);
+      maxHeight = Math.max(maxHeight, y + radius * 2);
+    });
+  }
+
+    function renderBubbles(lovecraft, poe) {
+      svg.innerHTML = "";
+
+      if (showSharedOnly) {
+        const shared = lovecraft.filter(d => sharedWords.includes(d.word));
+        draw(shared, 500, "#facc15", "#eab308"); // Yellow
+      } else {
+        draw(lovecraft, 150, "#69e864", "#339f0e"); // Green
+        draw(poe, 750, "#c084fc", "#9333ea");      // Purple
+      }
+    }
+
+renderBubbles(lovecraftData, poeData);
+
+  svg.setAttribute("viewBox", `0 0 ${maxWidth + 100} ${maxHeight + 100}`);
+  svg.setAttribute("preserveAspectRatio", "xMidYMin meet");
+}
+  </script>
+
+  <footer class="footer">
+        <div id="content">
+            <div class="footer-info">
+                <p>&copy;  Molly Wright | Chelsea Quijas | DIGIT 210 Project | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+
+
+
+
