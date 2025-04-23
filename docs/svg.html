@@ -29,13 +29,25 @@
         </ul>
     </nav>
 
- <p style="text-align: center;">More info about the SVG content. Used the adjFILTERED.tsv</p>
+ <p class="container2">
+     Below are adjectives extracted from the works of two influential horror writers:
+     <a href="https://www.gutenberg.org/cache/epub/2148/pg2148.txt">Edgar Allan Poe</a> and
+     <a href="https://www.gutenberg.org/cache/epub/68236/pg68236.txt">H.P. Lovecraft</a>.
+     Using JavaScript, we generated this SVG file to create an interactive visualization based on
+     their distinct styles. The size of the bubbles are based on the
+     <a href="https://www.vocabulary.com/dictionary/synset#:~:text=Definitions%20of%20synset,together%20and%20are%20so%20used">
+         synset </a>. The "synset" numbers (like 16, 21, 36 which you cannot see) are shorthand codes within the
+     dataset to group words by meaning or context. This helps to see which words have a higher synset value
+     (bigger impact or usage).
+
+
+ </p>
 
   <button id="toggleBtn">Show Shared Words Only</button>
   <svg id="bubbleChart"></svg>
 
 
-<script>
+<script> // lovecraft data from adjFILTERED.tsv
   const lovecraftData = [
       { word: "wild", synset: 17 },
       { word: "deep", synset: 21 },
@@ -105,36 +117,107 @@
 
 
   ];
-
+// PoeData from adjFILTERED.tsv
   const poeData = [
-    { word: "dark", synset: 16 },
-    { word: "open", synset: 36 },
-    { word: "well", synset: 22 },
-    { word: "true", synset: 15 },
-    { word: "good", synset: 27 },
-    { word: "high", synset: 18 },
-    { word: "last", synset: 21 },
-    { word: "close", synset: 37 },
-    { word: "clear", synset: 45 },
-    { word: "true", synset: 15 },
+      { word: "dark", synset: 16 },
+      { word: "open", synset: 36 },
+      { word: "well", synset: 22 },
+      { word: "true", synset: 15 },
+      { word: "good", synset: 27 },
+      { word: "high", synset: 18 },
+      { word: "last", synset: 21 },
+      { word: "close", synset: 37 },
+      { word: "clear", synset: 45 },
+      { word: "first", synset: 16 },
+      { word: "present", synset: 18 },
+      { word: "square", synset: 25 },
+      { word: "puff", synset: 17 },
+      { word: "deep", synset: 21 },
+      { word: "right", synset: 36 },
+      { word: "closed", synset: 26 },
+      { word: "second", synset: 15 },
+      { word: "short", synset: 23 },
+      { word: "true", synset: 15 },
+      { word: "blue", synset: 16 },
+      { word: "broken", synset: 22 },
+      { word: "directed", synset: 15 },
+      { word: "wild", synset: 17 },
+      { word: "easy", synset: 15 },
+      { word: "fair", synset: 17 },
+      { word: "black", synset: 22 },
+      { word: "high", synset: 18 },
+      { word: "sound", synset: 24 },
+      { word: "regular", synset: 17 },
+      { word: "solid", synset: 18 },
+      { word: "flat", synset: 24 },
+      { word: "white", synset: 25 },
+      { word: "fitting", synset: 15 },
+      { word: "tight", synset: 16 },
+      { word: "square", synset: 25 },
+      { word: "heavy", synset: 30 },
+      { word: "solid", synset: 18 },
+      { word: "free", synset: 22 },
+      { word: "sweet", synset: 16 },
+      { word: "big", synset: 17 },
+      { word: "soft", synset: 20 },
+      { word: "hard", synset: 22 },
+      { word: "separate", synset: 19 },
+      { word: "direct", synset: 24 },
+      { word: "double", synset: 21 },
+      { word: "low", synset: 16 },
+      { word: "dead", synset: 21 },
+      { word: "light", synset: 47 },
+      { word: "flush", synset: 18 },
+      { word: "sharp", synset: 15 },
+      { word: "round", synset: 25 },
+      { word: "loose", synset: 18 },
+      { word: "wild", synset: 17 },
+      { word: "rough", synset: 18 },
+      { word: "extended", synset: 22 },
+      { word: "easy", synset: 15 },
+      { word: "cold", synset: 16 },
+      { word: "marked", synset: 18 },
+      { word: "subject", synset: 15 },
+      { word: "good", synset: 27 },
+      { word: "clear", synset: 45 },
+      { word: "dull", synset: 19 },
+      { word: "gray", synset: 15 },
+      { word: "last", synset: 21 },
+      { word: "still", synset: 18 },
+      { word: "striking", synset: 25 },
+      { word: "straight", synset: 21 },
+      { word: "frozen", synset: 17 },
+      { word: "striped", synset: 15 },
+      { word: "free", synset: 22 },
+      { word: "direct", synset: 24 },
+      { word: "last", synset: 21 },
+      { word: "fast", synset: 15 },
+      { word: "covered", synset: 27 },
+      { word: "fair", synset: 17 },
+      { word: "round", synset: 25 },
+      { word: "hot", synset: 21 },
+      { word: "fit", synset: 16 },
+      { word: "wilder", synset: 15 },
+      { word: "bad", synset: 17 },
+
   ];
 
 
     const sharedWords = Array.from(new Set(lovecraftData.map(d => d.word)))
       .filter(word => poeData.some(p => p.word === word));
 
-    const svg = document.getElementById("bubbleChart");
-    const toggleBtn = document.getElementById("toggleBtn");
+    const svg = document.getElementById("bubbleChart");   //bubble chart
+    const toggleBtn = document.getElementById("toggleBtn"); //toggle button
     let showSharedOnly = false;
 
-    toggleBtn.addEventListener("click", () => {
+    toggleBtn.addEventListener("click", () => {  // onclick to switch show all or shared
       showSharedOnly = !showSharedOnly;
       toggleBtn.textContent = showSharedOnly ? "Show All Words" : "Show Shared Words Only";
       renderBubbles(lovecraftData, poeData);
     });
 
     function renderBubbles(lovecraft, poe) {
-  svg.innerHTML = "";
+  svg.innerHTML = "";  // load the bubbles
 
   let maxWidth = 0;
   let maxHeight = 0;
@@ -143,13 +226,13 @@
     data.forEach((item, i) => {
       const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
       group.setAttribute("class", "bubble");
-      const radius = item.synset;
-      const col = i % 4;
-      const row = Math.floor(i / 4);
-      const x = offsetX + col * 150;
-      const y = 100 + row * 130;
+      const radius = item.synset;  // different sizes of the bubbles based off synset
+      const col = i % 4;  //4 columns
+      const row = Math.floor(i / 4); //4 rows
+      const x = offsetX + col * 150; //offset
+      const y = 100 + row * 130;    // location
 
-    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle"); //to create circle
       circle.setAttribute("cx", x);
       circle.setAttribute("cy", y);
       circle.setAttribute("r", radius);
@@ -160,34 +243,34 @@
      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
       text.setAttribute("x", x);
       text.setAttribute("y", y + 4);
-      text.setAttribute("text-anchor", "middle");
+      text.setAttribute("text-anchor", "middle");  //text in middle of circle
       text.textContent = item.word;
 
       group.appendChild(circle);
       group.appendChild(text);
       svg.appendChild(group);
 
-           maxWidth = Math.max(maxWidth, x + radius * 2);
+           maxWidth = Math.max(maxWidth, x + radius * 2);  //max radius of circle
       maxHeight = Math.max(maxHeight, y + radius * 2);
     });
   }
 
-    function renderBubbles(lovecraft, poe) {
+    function renderBubbles(lovecraft, poe) { //to render bubbles colors
       svg.innerHTML = "";
 
       if (showSharedOnly) {
         const shared = lovecraft.filter(d => sharedWords.includes(d.word));
-        draw(shared, 500, "#facc15", "#eab308"); // Yellow
+        draw(shared, 200, "#facc15", "#eab308"); // Yellow shared
       } else {
-        draw(lovecraft, 150, "#69e864", "#339f0e"); // Green
-        draw(poe, 750, "#c084fc", "#9333ea");      // Purple
+        draw(lovecraft, 150, "#69e864", "#339f0e"); // Green lovecraft
+        draw(poe, 750, "#c084fc", "#9333ea");      // Purple poe
       }
     }
 
 renderBubbles(lovecraftData, poeData);
 
-  svg.setAttribute("viewBox", `0 0 ${maxWidth + 100} ${maxHeight + 100}`);
-  svg.setAttribute("preserveAspectRatio", "xMidYMin meet");
+  svg.setAttribute("viewBox", `0 0 ${maxWidth + 100} ${maxHeight + 100}`);  // 100 percent viewbox
+  svg.setAttribute("preserveAspectRatio", "xMidYMin meet");  // max size
 }
   </script>
 
