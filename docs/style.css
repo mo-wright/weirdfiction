@@ -34,6 +34,15 @@ body {
     padding: 20px;
 }
 
+.container2 {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 20px;
+    font-size: 1.5rem;
+}
+
+
 .container img {
       width: 600px;
   height: 400px;
@@ -180,7 +189,7 @@ svg {
       transition: transform 0.3s;
     }
     .bubble:hover {
-      transform: scale(1.6);
+      transform: scale(1.2);
     }
     .bubble text {
       font-size: 12px;
