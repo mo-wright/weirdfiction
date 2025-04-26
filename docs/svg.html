@@ -202,77 +202,84 @@
 
   ];
 
+const sharedWords = Array.from(new Set(lovecraftData.map(d => d.word)))
+  .filter(word => poeData.some(p => p.word === word));
 
-    const sharedWords = Array.from(new Set(lovecraftData.map(d => d.word)))
-      .filter(word => poeData.some(p => p.word === word));
+const svg = document.getElementById("bubbleChart");
+const toggleBtn = document.getElementById("toggleBtn");
+let showSharedOnly = false;
 
-    const svg = document.getElementById("bubbleChart");   //bubble chart
-    const toggleBtn = document.getElementById("toggleBtn"); //toggle button
-    let showSharedOnly = false;
+toggleBtn.addEventListener("click", () => {
+  showSharedOnly = !showSharedOnly;
+  toggleBtn.textContent = showSharedOnly ? "Show All Words" : "Show Shared Words Only";
+  renderBubbles(lovecraftData, poeData);
+});
 
-    toggleBtn.addEventListener("click", () => {  // onclick to switch show all or shared
-      showSharedOnly = !showSharedOnly;
-      toggleBtn.textContent = showSharedOnly ? "Show All Words" : "Show Shared Words Only";
-      renderBubbles(lovecraftData, poeData);
-    });
 
-    function renderBubbles(lovecraft, poe) {
-  svg.innerHTML = "";  // load the bubbles
+function draw(data, offsetX, color1, color2) {
+  data.forEach((item, i) => {
+    const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    group.setAttribute("class", "bubble");
 
-  let maxWidth = 0;
-  let maxHeight = 0;
+    const radius = item.synset;
+    const col = i % 4;    //4 col
+    const row = Math.floor(i / 4); //4 row
+    const x = offsetX + col * 150;
+    const y = 100 + row * 130;
 
-    function draw(data, offsetX, color1, color2) {
-    data.forEach((item, i) => {
-      const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
-      group.setAttribute("class", "bubble");
-      const radius = item.synset;  // different sizes of the bubbles based off synset
-      const col = i % 4;  //4 columns
-      const row = Math.floor(i / 4); //4 rows
-      const x = offsetX + col * 150; //offset
-      const y = 100 + row * 130;    // location
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circle.setAttribute("cx", x);
+    circle.setAttribute("cy", y);
+    circle.setAttribute("r", radius);
+    circle.setAttribute("fill", color1);
+    circle.setAttribute("stroke", color2);
+    circle.setAttribute("stroke-width", "2");
 
-    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle"); //to create circle
-      circle.setAttribute("cx", x);
-      circle.setAttribute("cy", y);
-      circle.setAttribute("r", radius);
-      circle.setAttribute("fill", color1);
-      circle.setAttribute("stroke", color2);
-      circle.setAttribute("stroke-width", "2");
+    const title = document.createElementNS("http://www.w3.org/2000/svg", "title");
+    title.textContent = `${item.word} (Synset: ${item.synset})`;
+    circle.appendChild(title); //moved inside circle instead of group
 
-     const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-      text.setAttribute("x", x);
-      text.setAttribute("y", y + 4);
-      text.setAttribute("text-anchor", "middle");  //text in middle of circle
-      text.textContent = item.word;
+    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    text.setAttribute("x", x);
+    text.setAttribute("y", y + 4);
+    text.setAttribute("text-anchor", "middle");
+    text.textContent = item.word;
 
-      group.appendChild(circle);
-      group.appendChild(text);
-      svg.appendChild(group);
+    group.appendChild(circle);
+    group.appendChild(text);
+    svg.appendChild(group);
 
-           maxWidth = Math.max(maxWidth, x + radius * 2);  //max radius of circle
-      maxHeight = Math.max(maxHeight, y + radius * 2);
-    });
+
+    maxWidth = Math.max(maxWidth, x + radius * 2);
+    maxHeight = Math.max(maxHeight, y + radius * 2);
+  });
+}
+
+
+function renderBubbles(lovecraft, poe) {
+  svg.innerHTML = "";
+
+
+  maxWidth = 0;
+  maxHeight = 0;
+
+  if (showSharedOnly) {
+    const shared = lovecraft.filter(d => sharedWords.includes(d.word));
+    draw(shared, 200, "#facc15", "#eab308"); // Yellow shared
+  } else {
+    draw(lovecraft, 150, "#69e864", "#339f0e"); // Green Lovecraft
+    draw(poe, 750, "#c084fc", "#9333ea");       // Purple Poe
   }
 
-    function renderBubbles(lovecraft, poe) { //to render bubbles colors
-      svg.innerHTML = "";
 
-      if (showSharedOnly) {
-        const shared = lovecraft.filter(d => sharedWords.includes(d.word));
-        draw(shared, 200, "#facc15", "#eab308"); // Yellow shared
-      } else {
-        draw(lovecraft, 150, "#69e864", "#339f0e"); // Green lovecraft
-        draw(poe, 750, "#c084fc", "#9333ea");      // Purple poe
-      }
-    }
+  svg.setAttribute("viewBox", `0 0 ${maxWidth + 100} ${maxHeight + 100}`);
+  svg.setAttribute("preserveAspectRatio", "xMidYMin meet");
+}
 
 renderBubbles(lovecraftData, poeData);
 
-  svg.setAttribute("viewBox", `0 0 ${maxWidth + 100} ${maxHeight + 100}`);  // 100 percent viewbox
-  svg.setAttribute("preserveAspectRatio", "xMidYMin meet");  // max size
-}
-  </script>
+</script>
+
 
   <footer class="footer">
         <div id="content">
