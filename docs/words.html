@@ -29,28 +29,37 @@
 
     <main class="container">
         <h1> AntConc </h1>
-        <h2>"insert info here about your findings"</h2>
+        <h2>Settings Used</h2>
 
         <!-- settings used -->
         <img src="images/settingReference.png" alt="Settings ">
+        <p class="container2"> From a structural standpoint, phrases that set the scene, their use of "filler" words, and how often they are repeated can give valuable insights into how the text flows.
+        They can both describe the scene in vivid detail and shroud it in mystery. To analyze how both authors structure their work, we specifically filtered for 3-grams, as this number of words in series keeps things vague enough where there can be meaningful crossover between the two. The 3-grams had to show up at least 15 times, and show up in both bodies of work.
+        </p>
 
         <h2> Most common with numbers </h2>
 
         <!-- most common -->
         <img src="images/mostCommonWithNumber.png" alt="Most common with numbers">
+        <p class="container2">What we found from this is that both Lovecraft and Poe are, well, wordy. More specifically, they both tend to preface descriptions with lots of filler, as shown above. This indicates that their sentences are often long and winding, and avoid getting to 'the point' for as long as possible. The reader is therefore strung along, so to speak, as both authors take their time unveiling true horrors.</p>
+        <p class="container2">Something else seen in the chart above is the repeated use of first-person perspective and the focus on how the viewer character <i>sees</i> or <i>perceives</i> what is going on. 'Something' is not, it 'seems to be'. This begs the question: is seeing truly believing? Both authors seem to understand the unease unreliability creates and use it extensively.</p>
 
         <h2> Most common word cloud </h2>
 
         <!-- Most common word cloud -->
         <img src="images/mostCommon.png" alt="Most common ">
+        <p class="container2">A larger selection of shared phrases are seen above. Note the use of "I" in particular. Something that's more obvious within the wordcloud is the use of vague language. Relevant phrases under this category include: "would have", "some of", and "a kind of". Once again, specifics are avoided. There's almost a sense of Poe and Lovecraft's subject matters being indescribable - to the point where they can only be compared to something tangible rather than depicted explicitly.</p>
 
         <h2> Adjectives Filtered using Cytoscape </h2>
 
         <img src="images/adjFILTERED.svg" alt="Cytoscape SVG ">
+        <p class="container2">Something worth exploring is each author's use of adjectives, i.e., description words. The two authors share a lot of their word choices in this respect, as seen above with the center 'bubble'. Going off of this notion of 'vagueness', we were particularly interested in how many potential meanings there were for the shared adjectives used. If there are multiple ways a word can be used, the word can be stretched within certain contexts to make its definition intentionally confusing.</p>
+        <p class="container2">A larger bubble on this graph indicates a higher amount of potential definitions <a href="svg.html">(adapted from their "synset").</a> Generally, the most vague adjectives within both author's bodies of work were also the ones they shared between each other and used the most (the latter is shown through their coloration). Besides that, it doesn't appear that either author used vague adjectives in a particularly significant way. With that said, the vague adjectives they did choose to use illustrate their subjects with mysterious and uninviting language.  </p>
 
         <h2> Pie Graph comparing the top unique words of <a href="https://www.gutenberg.org/cache/epub/2148/pg2148.txt"> Edgar Allan Poe </a> and <a href="https://www.gutenberg.org/cache/epub/68236/pg68236.txt">
             H.P. Lovecraft</a>. </h2>
         <img src="images/piegraph.png" alt=" PieGraph">
+        <p class="container2">Here's another way to visualize each author's vocabulary, taking the most common single words across each text corpus. All of the locations present on this graph (Arkham and Innsmouth) are from Lovecraft, indicating a larger focus on location.</p><br />
 
     </main>
 
