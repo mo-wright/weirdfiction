@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="images/brain.png">
+    <title>Weird Fiction</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="top">
+    <div class="header-text">
+        <h1>Weird Fiction</h1>
+        <p>Welcome! </p>
+        <p> The website is currently under construction.</p>
+    </div>
+</header>
+<main>
+<nav>
+    <ul class="htop">
+        <li class="active"><a href="index.html">Home</a></li>
+        <li><a href="words.html">Text Analysis</a></li>
+        <li><a href="svg.html">Word Comparison</a></li>
+        <li><a href="code.html">Code Snippet</a></li>
+    </ul>
+</nav>
+
+
+
+    <p class="para"> Code for SVG // svg.html </p>
+
+<div class="code-container">
+
+
+
+<code>
+
+&lt;script&gt; // lovecraft data from adjFILTERED.tsv <br/>
+const lovecraftData = [ <br/>
+    { word: "wild", synset: 17 },<br/>
+    { word: "deep", synset: 21 },<br/>
+    { word: "dark", synset: 16 },<br/>
+    { word: "low", synset: 16 },<br/>
+    { word: "good", synset: 27 },<br/>
+    { word: "open", synset: 36 },<br/>
+    { word: "blue", synset: 16 },<br/>
+    { word: "big", synset: 17 },<br/>
+    { word: "soft", synset: 20 },<br/>
+    { word: "bad", synset: 17 },<br/>
+    { word: "last", synset: 21 },<br/>
+    { word: "dead", synset: 21 },<br/>
+    { word: "black", synset: 22 },<br/>
+    { word: "white", synset: 25 },<br/>
+    { word: "hot", synset: 21 },<br/>
+    { word: "fit", synset: 16 },<br/>
+    { word: "cold", synset: 16 },<br/>
+    { word: "right", synset: 36 },<br/>
+    { word: "short", synset: 23 },<br/>
+    { word: "heavy", synset: 30 },<br/>
+    { word: "well", synset: 22 },<br/>
+    { word: "good", synset: 27 },<br/>
+    { word: "high", synset: 18 },<br/>
+    { word: "dry", synset: 19 },<br/>
+    { word: "live", synset: 19 },<br/>
+    { word: "solid", synset: 18 },<br/>
+    { word: "clear", synset: 45 },<br/>
+    { word: "close", synset: 37 },<br/>
+    { word: "second", synset: 15 },<br/>
+    { word: "present", synset: 18 },<br/>
+    { word: "heavy", synset: 30 },<br/>
+    { word: "advanced", synset: 20 },<br/>
+    { word: "back", synset: 28 },<br/>
+    { word: "true", synset: 15 },<br/>
+    { word: "dull", synset: 19 },<br/>
+    { word: "sharp", synset: 15 },<br/>
+    { word: "standing", synset: 21 },<br/>
+    { word: "last", synset: 21 },<br/>
+    { word: "foul", synset: 16 },<br/>
+    { word: "regular", synset: 17 },<br/>
+    { word: "closing", synset: 23 },<br/>
+    { word: "darker", synset: 45 },<br/>
+    { word: "wild", synset: 17 },<br/>
+    { word: "light", synset: 47 },<br/>
+    { word: "short", synset: 23 },<br/>
+    { word: "rough", synset: 18 },<br/>
+    { word: "first", synset: 16 },<br/>
+    { word: "loose", synset: 18 },<br/>
+    { word: "separate", synset: 19 },<br/>
+    { word: "upset", synset: 17 },<br/>
+    { word: "closed", synset: 26 },<br/>
+    { word: "gray", synset: 15 },<br/>
+    { word: "dull", synset: 19 },<br/>
+    { word: "blue", synset: 16 },<br/>
+    { word: "flat", synset: 24 },<br/>
+    { word: "fair", synset: 17 },<br/>
+    { word: "frozen", synset: 17 },<br/>
+    { word: "top", synset: 22 },<br/>
+    { word: "hard", synset: 22 },<br/>
+    { word: "soft", synset: 20 },<br/>
+    { word: "left", synset: 24 },<br/>
+    { word: "right", synset: 36 },<br/>
+    { word: "sound", synset: 24 },<br/>
+    { word: "free", synset: 22 },<br/>
+    { word: "crossing", synset: 15 },<br/>
+
+
+];<br/>
+// PoeData from adjFILTERED.tsv<br/>
+const poeData = [<br/>
+    { word: "dark", synset: 16 },<br/>
+    { word: "open", synset: 36 },<br/>
+    { word: "well", synset: 22 },<br/>
+    { word: "true", synset: 15 },<br/>
+    { word: "good", synset: 27 },<br/>
+    { word: "high", synset: 18 },<br/>
+    { word: "last", synset: 21 },<br/>
+    { word: "close", synset: 37 },<br/>
+    { word: "clear", synset: 45 },<br/>
+    { word: "first", synset: 16 },<br/>
+    { word: "present", synset: 18 },<br/>
+    { word: "square", synset: 25 },
+    { word: "puff", synset: 17 },<br/>
+    { word: "deep", synset: 21 },<br/>
+    { word: "right", synset: 36 },<br/>
+    { word: "closed", synset: 26 },<br/>
+    { word: "second", synset: 15 },<br/>
+    { word: "short", synset: 23 },<br/>
+    { word: "true", synset: 15 },<br/>
+    { word: "blue", synset: 16 },<br/>
+    { word: "broken", synset: 22 },<br/>
+    { word: "directed", synset: 15 },<br/>
+    { word: "wild", synset: 17 },<br/>
+    { word: "easy", synset: 15 },<br/>
+    { word: "fair", synset: 17 },<br/>
+    { word: "black", synset: 22 },<br/>
+    { word: "high", synset: 18 },<br/>
+    { word: "sound", synset: 24 },<br/>
+    { word: "regular", synset: 17 },<br/>
+    { word: "solid", synset: 18 },<br/>
+    { word: "flat", synset: 24 },<br/>
+    { word: "white", synset: 25 },<br/>
+    { word: "fitting", synset: 15 },<br/>
+    { word: "tight", synset: 16 },<br/>
+    { word: "square", synset: 25 },<br/>
+    { word: "heavy", synset: 30 },<br/>
+    { word: "solid", synset: 18 },<br/>
+    { word: "free", synset: 22 },<br/>
+    { word: "sweet", synset: 16 },<br/>
+    { word: "big", synset: 17 },<br/>
+    { word: "soft", synset: 20 },<br/>
+    { word: "hard", synset: 22 },<br/>
+    { word: "separate", synset: 19 },<br/>
+    { word: "direct", synset: 24 },<br/>
+    { word: "double", synset: 21 },<br/>
+    { word: "low", synset: 16 },<br/>
+    { word: "dead", synset: 21 },<br/>
+    { word: "light", synset: 47 },<br/>
+    { word: "flush", synset: 18 },<br/>
+    { word: "sharp", synset: 15 },<br/>
+    { word: "round", synset: 25 },<br/>
+    { word: "loose", synset: 18 },<br/>
+    { word: "wild", synset: 17 },<br/>
+    { word: "rough", synset: 18 },<br/>
+    { word: "extended", synset: 22 },<br/>
+    { word: "easy", synset: 15 },<br/>
+    { word: "cold", synset: 16 },<br/>
+    { word: "marked", synset: 18 },<br/>
+    { word: "subject", synset: 15 },<br/>
+    { word: "good", synset: 27 },<br/>
+    { word: "clear", synset: 45 },<br/>
+    { word: "dull", synset: 19 },<br/>
+    { word: "gray", synset: 15 },<br/>
+    { word: "last", synset: 21 },<br/>
+    { word: "still", synset: 18 },<br/>
+    { word: "striking", synset: 25 },<br/>
+    { word: "straight", synset: 21 },<br/>
+    { word: "frozen", synset: 17 },<br/>
+    { word: "striped", synset: 15 },<br/>
+    { word: "free", synset: 22 },<br/>
+    { word: "direct", synset: 24 },<br/>
+    { word: "last", synset: 21 },<br/>
+    { word: "fast", synset: 15 },<br/>
+    { word: "covered", synset: 27 },<br/>
+    { word: "fair", synset: 17 },<br/>
+    { word: "round", synset: 25 },<br/>
+    { word: "hot", synset: 21 },<br/>
+    { word: "fit", synset: 16 },<br/>
+    { word: "wilder", synset: 15 },<br/>
+    { word: "bad", synset: 17 },<br/>
+
+];<br/>
+
+const sharedWords = Array.from(new Set(lovecraftData.map(d => d.word)))<br/>
+    .filter(word => poeData.some(p => p.word === word));<br/>
+
+const svg = document.getElementById("bubbleChart");<br/>
+const toggleBtn = document.getElementById("toggleBtn");<br/>
+let showSharedOnly = false;<br/>
+
+toggleBtn.addEventListener("click", () => {<br/>
+    showSharedOnly = !showSharedOnly;<br/>
+    toggleBtn.textContent = showSharedOnly ? "Show All Words" : "Show Shared Words Only";<br/>
+    renderBubbles(lovecraftData, poeData);<br/>
+});<br/>
+
+
+function draw(data, offsetX, color1, color2) {<br/>
+    data.forEach((item, i) => {<br/>
+        const group = document.createElementNS("http://www.w3.org/2000/svg", "g");<br/>
+        group.setAttribute("class", "bubble");<br/>
+
+        const radius = item.synset;<br/>
+        const col = i % 4;    //4 col<br/>
+        const row = Math.floor(i / 4); //4 row<br/>
+        const x = offsetX + col * 150;<br/>
+        const y = 100 + row * 130;<br/>
+
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");<br/>
+        circle.setAttribute("cx", x);<br/>
+        circle.setAttribute("cy", y);<br/>
+        circle.setAttribute("r", radius);<br/>
+        circle.setAttribute("fill", color1);<br/>
+        circle.setAttribute("stroke", color2);<br/>
+        circle.setAttribute("stroke-width", "2");<br/>
+
+        const title = document.createElementNS("http://www.w3.org/2000/svg", "title");<br/>
+        title.textContent = `${item.word} (Synset: ${item.synset})`;<br/>
+        circle.appendChild(title); //moved inside circle instead of group<br/>
+
+        const text = document.createElementNS("http://www.w3.org/2000/svg", "text");<br/>
+        text.setAttribute("x", x);<br/>
+        text.setAttribute("y", y + 4);<br/>
+        text.setAttribute("text-anchor", "middle");<br/>
+        text.textContent = item.word;<br/>
+
+        group.appendChild(circle);<br/>
+        group.appendChild(text);<br/>
+        svg.appendChild(group);<br/>
+
+
+        maxWidth = Math.max(maxWidth, x + radius * 2);<br/>
+        maxHeight = Math.max(maxHeight, y + radius * 2);<br/>
+    });<br/>
+}<br/>
+
+
+function renderBubbles(lovecraft, poe) {<br/>
+    svg.innerHTML = "";<br/>
+
+
+    maxWidth = 0;<br/>
+    maxHeight = 0;<br/>
+
+    if (showSharedOnly) {<br/>
+        const shared = lovecraft.filter(d => sharedWords.includes(d.word));<br/>
+        draw(shared, 200, "#facc15", "#eab308"); // Yellow shared<br/>
+    } else {<br/>
+        draw(lovecraft, 150, "#69e864", "#339f0e"); // Green Lovecraft<br/>
+        draw(poe, 750, "#c084fc", "#9333ea");       // Purple Poe<br/>
+    }
+
+
+    svg.setAttribute("viewBox", `0 0 ${maxWidth + 100} ${maxHeight + 100}`);<br/>
+    svg.setAttribute("preserveAspectRatio", "xMidYMin meet");<br/>
+}<br/>
+
+renderBubbles(lovecraftData, poeData);<br/>
+
+&lt;/script&gt;<br/>
+
+    </code>
+</div>
+
+    <p class="para"> Python to create the Cytoscape // words.html </p>
+
+    <div class="code-container">
+
+    <code>
+        import os<br/>
+        import spacy<br/>
+        from nltk.corpus import wordnet as wn<br/>
+        import pandas as pd<br/>
+
+
+        nlp = spacy.load("en_core_web_md")<br/>
+
+        collPath = 'corpora'<br/>
+
+        def wordCollector(words, unit):<br/>
+        wordList = []<br/>
+        nodeAtts = []<br/>
+        unitList = []<br/>
+        synsetCounts = []<br/>
+        for token in words:<br/>
+        if token.pos_ == "ADJ" and len(wn.synsets(token.lemma_)) >= 15:<br/>
+        synsets = len(wn.synsets(token.lemma_))<br/>
+        wordList.append(token.lemma_)<br/>
+        nodeAtts.append(token.pos_)<br/>
+        unitList.append(unit)<br/>
+        synsetCounts.append(synsets)<br/>
+
+        data = {<br/>
+        'word': wordList,<br/>
+        'nodeType': nodeAtts,<br/>
+        'unit': unitList,<br/>
+        'synset' : synsetCounts}<br/>
+        df = pd.DataFrame(data)<br/>
+        return df<br/>
+
+        allDataFrames = []<br/>
+
+        for file in os.listdir(collPath):<br/>
+        if file.endswith("Sentences.txt"):<br/>
+        filepath = f"{collPath}/{file}"<br/>
+        name, extension = os.path.splitext(file)<br/>
+        with open(filepath, 'r', encoding='utf8') as f:<br/>
+        readFile = f.read()<br/>
+        spacyRead = nlp(readFile)<br/>
+        myDataFrame = wordCollector(spacyRead, name)<br/>
+        allDataFrames.append(myDataFrame)<br/>
+
+
+        # Make an output filepath<br/>
+        outputFilePath = 'adjFILTERED.tsv'<br/>
+        # Turn the list of dataframes into one dataframe:<br/>
+        fullDataFrame = pd.concat(allDataFrames, ignore_index=True)<br/>
+
+        fullDataFrame.to_csv(outputFilePath, sep='\t', index=False)<br/>
+        print('I just saved a dataframe as a TSV file.')<br/>
+        # Go check your filestash for the file.<br/>
+
+
+
+    </code>
+</div>
+    <p class="para"> Regex Key // regKey.md </p>
+
+    <div class="code-container">
+        <code>
+            ## Regex Steps<br/>
+            # Lovecraft<br/>
+
+            1. Added `&lt;xml&gt;` over entire document.<br/>
+            2. Found `(^\n*(.+\n(?:.+\n)*)` and replaced it with `&lt;para&gt;$1&lt;/para&gt;` to divide work into paragraphs <br/>
+            3. Found Gutenberg headings, titles, and beginning quotes from other authors and wrapped them in a<br/>
+            `&lt;meta&gt;` tag. Changed `&lt;para&gt;` tags to `&lt;info&gt;` tags within these for clarity.<br/>
+                4. Found `(?&lt;=&lt;para&gt;)([^&lt;]+?)([.!?])` and wrapped in `&lt;s&gt;` tag for first sentence. Oxygen<br/>
+                    didn't play nice with the para tags at the beginning, so this was necessary.<br/>
+                    5. Marked the rest of the `&lt;s&gt;` tags by using `(?&lt;=&lt;/s&gt;)([^&lt;]+?)([.!?])`. Had to<br/>
+                    continually find and replace in order to get everything in a paragraph, as this simply<br/>
+                    targeted the next sentence.<br/>
+                    6. Found `"(.*?)"` to find items in quotes and wrap them in a `quote` tag.<br/>
+
+                    ** Note: most paragraphs that consist *entirely* of quotes do not have `&lt;s&gt;` tags.<br/>
+                        I figured it could be valuable to have paragraphs with only quotations as a<br/>
+                        datapoint, so I didn't remedy this.**<br/>
+
+                        # Poe<br/>
+                        1. Most everything is the same as with the Lovecraft edits, however,<br/>
+                        Poe's use of single quotation marks for dialogue (i.e., "Hello blah blah blah,<br/>
+                        continue onto next line...) instead of wrapping them in quotations made the quotes<br/>
+                        a little harder to track. Some provisions were taken by only looking for one quote,<br/>
+                        but some may have fell through the cracks.<br/>
+        </code>
+    </div>
+
+</main>
+<footer class="footer">
+    <div id="content">
+        <div class="footer-info">
+            <p>&copy; Molly Wright | Chelsea Quijas | DIGIT 210 Project | All Rights Reserved</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
